@@ -20,6 +20,7 @@ def distribute_players(player_list, team_list):
             player['team'] = team
             player['guardians'] = player['guardians'].split(' and ')
             player['height'] = int(player['height'][:2])
+            player['experience'] = True if player['experience'] == 'YES' else False
             clean_list.append(player_list.pop(random_selection))
     return clean_list
 
@@ -64,7 +65,7 @@ def display_team_list(team_list):
     for team in team_list:
         print("{}) {}".format(counter, team))
         counter += 1
-    print("\nTo go to the previous menu, please enter 0")
+    print("\n0) To RETURN to the Main Menu")
 
 
 def display_team_stat(team_name):
@@ -72,8 +73,8 @@ def display_team_stat(team_name):
     common.print_title("Displaying Team Statistics for: {}".format(team_name))
     print("Number of Players: {}".format(get_player_count(team_name)))
     print("\nPlayers: {}".format(get_player_names(team_name)))
-    print("\nNumber of Newbies: {}".format(get_other_counts(team_name, "experience", "NO")))
-    print("\nNumber of Pros: {}".format(get_other_counts(team_name, "experience", "YES")))
+    print("\nNumber of Newbies: {}".format(get_other_counts(team_name, "experience", False)))
+    print("\nNumber of Pros: {}".format(get_other_counts(team_name, "experience", True)))
     print("\nAverage Height: {}".format(get_avg_height(team_name)))
     print("\nGuardians: {}".format(get_guardians(team_name)))
 
